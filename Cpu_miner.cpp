@@ -29,5 +29,3 @@ int Cpu_miner::mine(const char *input, int nonce_begin, int nonce_end, int diffi
     }
     return -1;
 }
-
-

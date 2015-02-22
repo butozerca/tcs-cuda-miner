@@ -52,7 +52,7 @@ void confirm_nonce(const char *data, int nonce, int difficulty)
 		std::cout << "Zły hash" << std::endl;
 }
 
-int main()
+int main(int argc, char** argv)
 {
 
     std::ifstream input(file_in);
@@ -75,9 +75,20 @@ int main()
 
     Cpu_miner cpu_miner;
     Gpu_miner gpu_miner;
-
+    
     int difficulty = 22;
     int min_nonce = 0, max_nonce = 10000000;
+    
+    if (argc > 1) {
+        difficulty = atoi(argv[1]);
+        printf("difficulty set to %d\n", difficulty);
+    }
+
+    if (argc > 3) {
+        min_nonce = atoi(argv[2]);
+        max_nonce = atoi(argv[3]);
+        printf("nonce interval set to %d %d\n", min_nonce, max_nonce);
+    }
 
 
     for (auto &s: in) {
@@ -86,11 +97,11 @@ int main()
         auto start = std::chrono::high_resolution_clock::now();
         int res = cpu_miner.mine(s.c_str(), min_nonce, max_nonce, difficulty);
         auto finish = std::chrono::high_resolution_clock::now();
-        printf("nonce= %d\n", res);
+        printf("nonce=%d\n", res);
         auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(finish-start);
         std::cout << "mining took " << milliseconds.count() << "ms\n";
         if (res != -1)
-            printf("speed: %ld KHash/s\n", ((res - min_nonce)/milliseconds.count()));
+            printf("speed: %ld KHash/s\n", ((res - min_nonce)/(milliseconds.count()+1)));
         confirm_nonce(s.c_str(), res, difficulty);
         
 
@@ -102,7 +113,7 @@ int main()
         milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(finish-start);
         std::cout << "mining took " << milliseconds.count() << "ms\n";
         if (res != -1)
-            printf("speed: %ld KHash/s\n", ((res - min_nonce)/milliseconds.count()));
+            printf("speed: %ld KHash/s\n", ((res - min_nonce)/(milliseconds.count()+1)));
         confirm_nonce(s.c_str(), res, difficulty);
 
         printf("\n");

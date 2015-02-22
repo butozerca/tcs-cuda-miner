@@ -92,7 +92,7 @@ int Gpu_miner::mine(const char *input, int nonce_begin, int nonce_end, int diffi
             exit(1);
         }
 	    res = cuCtxSynchronize();
-        if (res != 0) printf("kuda sie wypierdolila 1 %d\n", res);
+        if (res != 0) printf("cuda error %d\n", res);
 	    cuMemcpyDtoH(host_result, gpu_result, 4);
         if (host_result[0] != -1)
             break;

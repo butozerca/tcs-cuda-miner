@@ -1,0 +1,2 @@
+Żeby skompilować real-cpu i real-gpu potrzebne są biblioteki cpp-netlib, libblkmaker i libjansson
+W ubuntu można je zainstalować poleceniem sudo apt-get install libblkmaker-0.1-dev libcppnetlib-dev libjansson-dev

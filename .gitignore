@@ -3,6 +3,8 @@
 *.lo
 *.o
 *.obj
+*.ptx
+*.d
 
 # Precompiled Headers
 *.gch
@@ -26,3 +28,5 @@
 *.exe
 *.out
 *.app
+main
+real

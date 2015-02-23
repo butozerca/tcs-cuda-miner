@@ -76,8 +76,8 @@ int main(int argc, char** argv)
     Cpu_miner cpu_miner;
     Gpu_miner gpu_miner;
     
-    int difficulty = 22;
-    int min_nonce = 0, max_nonce = 10000000;
+    int difficulty = 24;
+    int min_nonce = 0, max_nonce = 40000000;
     
     if (argc > 1) {
         difficulty = atoi(argv[1]);

@@ -6,8 +6,8 @@ namespace cpu_miner {
 
 inline bool is_hash_valid(unsigned char* hash, int difficulty) {
     for(int i = 0; i < (difficulty >> 3); ++i)
-        if (hash[i] != 0) return false;
-    return hash[difficulty>>3] <= (255 >> (difficulty & 7) );
+        if (hash[31 - i] != 0) return false;
+    return hash[31 - (difficulty>>3)] <= (255 >> (difficulty & 7) );
 }
 
 }

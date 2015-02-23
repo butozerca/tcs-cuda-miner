@@ -230,8 +230,8 @@ void Gpu_hash(const char* input, const unsigned int* sha_const, int length, int 
     }*/
 
     for (int i = 0; i < (difficulty >> 3); ++i)
-        if (nonce_input[i] != 0) return;
-    if (nonce_input[difficulty >> 3] <= 255 >> (difficulty & 7)) {
+        if (nonce_input[31 - i] != 0) return;
+    if (nonce_input[31 - (difficulty >> 3)] <= 255 >> (difficulty & 7)) {
         *result = nonce;
     }
 }

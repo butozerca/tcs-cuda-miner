@@ -32,7 +32,7 @@ void confirm_nonce(const char *data, int nonce, int difficulty)
 
 	char hash_str[65];
 	for(int i = 0; i < 32; ++i)
-		sprintf(hash_str + 2 * i, "%02x", hash2[i]);
+		sprintf(hash_str + 2 * i, "%02x", hash2[31 - i]);
 	hash_str[64] = 0;
 
 	std::cout << "Policzony hash " << hash_str << std::endl;

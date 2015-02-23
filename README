@@ -11,7 +11,7 @@ Aby wykonać program należy wpisać w konsoli
 `./main [difficulty [nonce_min nonce_max]]`
 
 Można opcjonalnie podać minimalną ilość zer wymaganą w hashu oraz zakres `nonce` jaki chcemy przeszukać.
-W kodzie wpisane są rozsądne domyślne wartości, także nie trzeba ich podawać (przykład wykonuje się ~15 sek).
+W kodzie wpisane są rozsądne domyślne wartości, także nie trzeba ich podawać (przykład wykonuje się ~1 min na miraclu).
 
 W pliku `input.txt` znajdują się frazy dla których program spróbuje policzyć hashe - można coś tam dodać, ale trzeba pamiętać, aby były one 76 znakowe.
 

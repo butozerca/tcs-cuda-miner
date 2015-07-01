@@ -209,25 +209,11 @@ void Gpu_hash(const char* input, const unsigned int* sha_const, int length, int 
     ctx.update(nonce_input, length + 4, shared_mem);
     ctx.final(digest, shared_mem);
     
-    /*for (int i = 0; i < blockDim.x; ++i) {
-        if(i != threadIdx.x) continue;
-        printf("gpu hashed once:\n");
-        for(int i = 0; i < 8; ++i) {
-            printf("%08x", ((int*)digest)[i]);
-        }printf("\n");
-    }*/
 
     ctx.init(shared_mem);
     ctx.update(digest, 32, shared_mem);
     ctx.final(nonce_input, shared_mem);
     
-   /* for (int i = 0; i < blockDim.x; ++i) {
-        if(i != threadIdx.x) continue;
-        printf("gpu hashed twice:\n");
-        for(int i = 0; i < 8; ++i) {
-            printf("%08x", ((int*)nonce_input)[i]);
-        }printf("\n");
-    }*/
 
     for (int i = 0; i < (difficulty >> 3); ++i)
         if (nonce_input[31 - i] != 0) return;

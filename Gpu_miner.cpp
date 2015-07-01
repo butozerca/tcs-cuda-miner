@@ -2,7 +2,6 @@
 
 #include "Gpu_miner.hpp"
 
-//TODO handle difficulty and input not being a string
 int Gpu_miner::mine(const char *input, int nonce_begin, int nonce_end, int difficulty)
 {
     cuInit(0);

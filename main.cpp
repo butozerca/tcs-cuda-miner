@@ -70,7 +70,7 @@ int main(int argc, char** argv)
 
     if(in.empty())
     {
-        std::cout << "Ej no ale serio naprawde\n";
+        std::cout << "nothing to hash\n";
         return 1;
     }
 
@@ -101,8 +101,7 @@ int main(int argc, char** argv)
         printf("nonce=%d\n", res);
         auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(finish-start);
         std::cout << "mining took " << milliseconds.count() << "ms\n";
-        if (res != -1)
-            printf("speed: %ld KHash/s\n", ((res - min_nonce)/(milliseconds.count()+1)));
+        printf("speed: %ld KHash/s\n", ((((res == -1)?max_nonce:res) - min_nonce)/(milliseconds.count()+1)));
         confirm_nonce(s.c_str(), res, difficulty);
         
 
@@ -113,8 +112,7 @@ int main(int argc, char** argv)
         printf("nonce=%d\n", res);
         milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(finish-start);
         std::cout << "mining took " << milliseconds.count() << "ms\n";
-        if (res != -1)
-            printf("speed: %ld KHash/s\n", ((res - min_nonce)/(milliseconds.count()+1)));
+        printf("speed: %ld KHash/s\n", ((((res == -1)?max_nonce:res) - min_nonce)/(milliseconds.count()+1)));
         confirm_nonce(s.c_str(), res, difficulty);
 
         printf("\n");
